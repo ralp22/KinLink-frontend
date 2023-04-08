@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+body {
+  background: black;
+}
+
+h1 {
+  color: white;
+}
+
+a {
+  color: teal;
+}
+
+a:hover{
+  transform:scale(1.11);
+  color: red;
+}
