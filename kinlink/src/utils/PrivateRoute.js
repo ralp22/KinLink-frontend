@@ -1,13 +1,13 @@
-import { Route, Redirect } from 'react-router-dom'
 import React from 'react'
+import LogInPage from '../pages/LogInPage'
 
 const PrivateRoute = ({children, ...rest}) => {
+    const isAuthenticated = false
     console.log('Private route works')
     return (
     <React.Fragment>
-            {true? children : <Redirect to='/login'/>}
+            {isAuthenticated? children : <LogInPage/>}
     </React.Fragment>
-        
     )
 }
 
