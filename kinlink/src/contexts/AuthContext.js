@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     const loginUser = async (username, password) => {
-        //same as 'handleSubmit'
         try {
             console.log('Form submitted.')
         const response = await axios.post('http://localhost:8000/api/token/', {username, password}, {

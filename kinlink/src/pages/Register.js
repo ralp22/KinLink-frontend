@@ -68,7 +68,7 @@ export default function Register(){
                     <input onChange={handleChange}
                     name="confirmpassword"
                     type="password"
-                    placeholder="What do we call you?"
+                    placeholder="Re-enter password"
                     value={formValues.confirmpassword}
                     required/>
                 </div>
