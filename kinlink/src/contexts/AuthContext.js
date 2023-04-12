@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.post('http://localhost:8000/api/token/', {username, password}, {
             headers:{
                 'Content-Type': 'application/json'
+                // 'Access-Control-Allow-Origin':'http://localhost:8000'
             },
         })
         console.log(response.data)
@@ -41,7 +42,7 @@ export const AuthProvider = ({ children }) => {
         
     }
 
-    const contextData = {user, authTokens, isAuthenticated, loginUser, logout }
+    const contextData = {user, authTokens, isAuthenticated, loginUser, logout}
 
     return (
         <AuthContext.Provider value={contextData}>

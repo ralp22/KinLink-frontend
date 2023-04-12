@@ -5,9 +5,11 @@ import LogInPage from './LogInPage'
 export default function HomePage(){
 
     let {isAuthenticated} = useContext(AuthContext);
-  
-    console.log(isAuthenticated)
-    console.log(useContext(AuthContext))
+    const showSomething = async () => {
+        console.log(isAuthenticated)
+    }
+    showSomething()
+    
     
     
     return (
