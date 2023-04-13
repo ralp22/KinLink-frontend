@@ -18,18 +18,18 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.post('http://localhost:8000/api/token/', {username, password}, {
             headers:{
                 'Content-Type': 'application/json'
-                // 'Access-Control-Allow-Origin':'http://localhost:8000'
             },
         })
         console.log(response.data)
         setUser(username)
         setAuthTokens(response.data.access)
         setIsAuthenticated(true)
-        console.log(user, authTokens, isAuthenticated)
+        
         } catch (error) {
             console.log(error)
             setIsAuthenticated(false)
         }
+        console.log({user}, {authTokens}, {isAuthenticated})
     }
 
     const logout = () => {

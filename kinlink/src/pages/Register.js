@@ -1,10 +1,22 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
 
 export default function Register(){
 
-    let navigate = useNavigate()
 
+    
+    let navigate = useNavigate()
+    const BASE_URL = 'http://localhost:8000'
+    const  RegisterUser = async (data) => {
+        try {
+            const response = await axios.post(`${BASE_URL}/users/`, data)
+            console.log(response)
+            return response
+        } catch(error) {
+            throw error
+        }
+    }
     const [formValues, setFormValues] = useState({
         username: '',
         email: '',
@@ -13,32 +25,36 @@ export default function Register(){
     })
 
     const handleChange = (e) => {
-            setFormValues({...formValues, [e.target.name]: e.target.value})
+        setFormValues({...formValues, [e.target.name]: e.target.value})
+        console.log(formValues)
         }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // await RegisterUser({
-        //     username: formValues.username,
-        //     email: formValues.email,
-        //     password: formValues.password
-        // })
+        await RegisterUser({
+            username: formValues.username,
+            email: formValues.email,
+            password: formValues.password,
+            is_staff: 'False',
+            is_superuser: 'False'
+        })
         setFormValues({
             username: '',
             email: '',
             password: '',
             confirmpassword: ''
         })
-        console.log(e)
+        console.log('Registering user...')
         navigate('/login')
     }
     
     return (
         <div className="register">
             <div className="register-container">
-                <form className="area" onSubmit={handleSubmit}>
+                <form className="register-form" onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                     <label htmlFor='username'>Username</label>
-                    <input onChange={handleChange}
+                    <input className="reg-input-field" onChange={handleChange}
                     name="username"
                     type="text"
                     placeholder="What do we call you?"
@@ -47,7 +63,7 @@ export default function Register(){
                 </div>
                 <div className="input-wrapper">
                     <label htmlFor='email'>Email</label>
-                    <input onChange={handleChange}
+                    <input className="reg-input-field" onChange={handleChange}
                     name="email"
                     type="text"
                     placeholder="What's your email?"
@@ -56,7 +72,7 @@ export default function Register(){
                 </div>
                 <div className="input-wrapper">
                     <label htmlFor='username'>Password</label>
-                    <input onChange={handleChange}
+                    <input className="reg-input-field" onChange={handleChange}
                     name="password"
                     type="password"
                     placeholder="Select a password"
@@ -65,14 +81,14 @@ export default function Register(){
                 </div>
                 <div className="input-wrapper">
                     <label htmlFor='confirmpassword'>Confirm password</label>
-                    <input onChange={handleChange}
+                    <input className="reg-input-field" onChange={handleChange}
                     name="confirmpassword"
                     type="password"
                     placeholder="Re-enter password"
                     value={formValues.confirmpassword}
                     required/>
                 </div>
-                <button type='submit' disabled={!formValues.username||(!formValues.password && formValues.confirmpassword === formValues.password)}>
+                <button className="reg-btn" type='submit' disabled={!formValues.username||(!formValues.password && formValues.confirmpassword === formValues.password)}>
                     One of Us! One of Us!
                 </button>
                 </form>

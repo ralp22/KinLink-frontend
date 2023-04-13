@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
-export default function LogInPage(props) {
+export default function LogInPage() {
   let { loginUser } = useContext(AuthContext);
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -21,22 +21,30 @@ export default function LogInPage(props) {
   };
 
   return (
-    <div>
+
+    <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
+        <div className="input-wrapper">
+          <label htmlFor="username">Username</label>
         <input
           type="text"
           name="username"
           placeholder="Your username here"
           onChange={(e) => setUsername(e.target.value)}
-        ></input>
+        ></input></div>
+        <div className="input-wrapper">
+       <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
           placeholder="Password here"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button type="submit">Log In</button>
+        </div>
+        <button className="login-btn" type="submit">Log In</button>
       </form>
-    </div>
+      {!(loginUser)?<h2 style={{textShadow: '0 2px 2px black', color: 'aliceblue', alignSelf: "center"}}>Please log in ...</h2>:null}
+      </div>
+      
   );
 }

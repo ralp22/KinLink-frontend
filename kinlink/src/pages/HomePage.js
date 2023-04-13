@@ -1,20 +1,14 @@
 import AuthContext from '../contexts/AuthContext'
-import { useContext } from 'react'
-import LogInPage from './LogInPage'
+import { React, useContext } from 'react'
 
 export default function HomePage(){
 
-    let {isAuthenticated} = useContext(AuthContext);
-    const showSomething = async () => {
-        console.log(isAuthenticated)
-    }
-    showSomething()
-    
-    
+
+    let {isAuthenticated, user} = useContext(AuthContext);    
     
     return (
         <div>
-        { !isAuthenticated ? (<LogInPage/>) : <h1>You're home!</h1>
+        { isAuthenticated === false? null : <h1>Welcome back, {user}!</h1>
         }
         </div>
     ) 

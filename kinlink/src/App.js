@@ -9,6 +9,9 @@ import Nav from './components/Nav'
 import Register from './pages/Register';
 
 function App() {
+
+  const BASE_URL = 'http://localhost:8000'
+
   return (
     <div className="App">
       <h1>KinLink</h1>
