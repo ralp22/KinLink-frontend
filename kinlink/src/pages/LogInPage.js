@@ -17,7 +17,7 @@ export default function LogInPage() {
   };
 
   return (
-    <div className="login-container dark:bg-gray-900 dark:text-secondary">
+    <div className="flex flex-col rounded-lg self-center login-container dark:bg-gray-900 dark:text-secondary">
       <form className="login-form dark:bg-gray-900 dark:text-secondary" onSubmit={handleSubmit}>
         <div className="input-wrapper">
           <label htmlFor="username">Username</label>

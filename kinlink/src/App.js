@@ -1,9 +1,8 @@
 import './App.css';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LogInPage from './pages/LogInPage'
-import PrivateRoute from './utils/PrivateRoute'
 import axios from 'axios'
 import { AuthProvider } from './contexts/AuthContext'
 import Nav from './components/Nav'
@@ -46,7 +45,7 @@ function App() {
       const getPosts = async () => {
           const res = await axios.get(`${BASE_URL}/posts/`)
           console.log(res)
-          setPosts(res.data)
+          setPosts(Array.from(res.data))
           console.log(posts)
       }
       getPosts()
@@ -62,7 +61,6 @@ function App() {
       }
       getComments()
   },[])
-  
 
   useEffect(()=>{
       const getRelationships = async () => {
@@ -86,20 +84,21 @@ function App() {
   },[])
 
   return (
-    <div className="App dark:bg-primary dark:text-gray-50">
-      <img className="max-h-screen-sm max-w-screen-sm self-center ml-16" src={logo}/>
+    
       <AuthProvider>
+        <div className="App dark:bg-primary dark:text-gray-50">
+      <img className="max-h-screen-sm max-w-screen-sm self-center ml-16" src={logo}/>
         <Nav/>
         <Routes>
           <React.Fragment>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/login" element={<LogInPage/>}/>
             <Route path="/register" element={<Register/>}/>
-            <Route path="/private" element={<PrivateRoute/>}/>
           </React.Fragment>
         </Routes>
+        </div>
       </AuthProvider>
-    </div>
+    
   );
 }
 

@@ -51,7 +51,7 @@ export default function Register(){
     }
     
     return (
-        <div className="register dark:bg-black-900 dark:text-secondary">
+        <div className="self-center register dark:bg-black-900 dark:text-green-400 ">
             <div className="register-container dark:bg-secondary dark:text-secondary">
                 <form className="register-form dark:bg-primary dark:text-secondary" onSubmit={handleSubmit}>
                 <div className="input-wrapper">

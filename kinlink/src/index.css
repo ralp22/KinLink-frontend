@@ -4,7 +4,7 @@
 
 @layer components {
     .navbar-icon {
-        @apply relative flex items-center justify-center h-16 w-16 mx-auto bg-primary opacity-75 hover:opacity-100 hover:bg-lime-600 hover:text-primary rounded-2xl transition-all cursor-pointer;
+        @apply relative flex items-center justify-center h-16 w-16 mx-auto my-auto bg-primary opacity-75 hover:opacity-100 hover:bg-lime-600 hover:text-primary rounded-2xl transition-all cursor-pointer;
     }
     .navbar-tip{
         @apply absolute w-auto p-2 m-2 min-w-max left-20 rounded-md shadow-md text-lime-600 bg-gray-900 text-xl font-bold transition-all duration-100 scale-0 origin-left; 

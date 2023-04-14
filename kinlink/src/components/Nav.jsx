@@ -1,5 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
 import UseDarkMode from "../hooks/UseDarkMode";
 import {BsFillLightningFill, BsFillHouseHeartFill, BsFillHouseFill} from 'react-icons/bs'
@@ -16,7 +15,7 @@ import {
 
 const Nav = () => {
 
-  let { user, logout } = useContext(AuthContext);
+  let { logout, ToRegister, ToLogin, ToHome } = useContext(AuthContext);
 
   const ThemeIcon = () => {
     const [darkTheme, setDarkTheme] = UseDarkMode()
@@ -37,7 +36,7 @@ const Nav = () => {
   }
   const UserIcon = () => {
     return (
-        <span>
+        <span onClick={ToLogin}>
             <FaUserCircle size="40"/>
         </span>
     )
@@ -45,7 +44,7 @@ const Nav = () => {
   }
   const RegisterIcon = () => {
     return (
-        <span>
+        <span onClick={ToRegister}>
             <FaLink size="40"/>
         </span>
     )
@@ -53,7 +52,7 @@ const Nav = () => {
   
   const HomeIcon = () => {
     return (
-        <span>
+        <span onClick={ToHome}>
             <BsFillHouseHeartFill size="40"/>
         </span>
     )
@@ -62,7 +61,7 @@ const Nav = () => {
  
   return (
     <div>
-      <div className="nav-bar flex flex-col fixed top-0 h-screen w-24 bg-gray-300 shadow-2xl shadow-green-950 text-lime-600 dark:bg-black">
+      <div className="nav-bar flex flex-col fixed top-0 h-screen w-24 bg-gray-300 shadow-2xl shadow-green-950 text-lime-600 dark:bg-black dark:bg-opacity-80">
         <NavBarIcon 
             icon={<ThemeIcon/>}
             text={"Toggle Dark Mode"}/>
@@ -88,13 +87,12 @@ const Nav = () => {
             />
 
       </div>
-      {user ? <span className="name-tag">{user}</span> : null}
     </div>
   );
 };
 
 const NavBarIcon = ({ icon, text }) => (
-  <div className="navbar-icon group">
+  <div className="navbar-icon group" style={{boxShadow: '1px 2px 2px gray'}}>
     {icon}
     <span className="navbar-tip group-hover:scale-100">{text}</span>
   </div>
