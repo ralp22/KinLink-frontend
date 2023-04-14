@@ -1,12 +1,13 @@
 .App {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 body {
   background: ghostwhite;
 }
-
+/* 
 .register-form {
   display: flex;
   flex-direction: column;
@@ -101,7 +102,7 @@ button:hover{
   border-radius: 2rem;
   align-items: center;
   margin-top: 10vh;
-  background: linear-gradient(to right, gray, 20%, darkgray, 80%,rgb(214, 214, 214));
+  background: linear-gradient(to bottom right, rgb(62, 203, 62), 20%, rgb(160, 224, 31), 80%,#ffad3a);
   box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.402);
 }
 
@@ -132,15 +133,13 @@ button:hover{
 .nav-bar{
   top: 0;
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: right;
-  gap: 5px;
-  margin-right: 10px;
+  justify-content: center;
+  gap: 6px;
 }
 
 .nav-btn {
-  font-size: 18px;
-  height: 30px;
+  font-size: 26px;
   border-radius: 0.5rem;
-}
+} */

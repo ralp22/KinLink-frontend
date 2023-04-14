@@ -3,11 +3,13 @@ import { useState } from 'react'
 import axios from 'axios'
 
 export default function Register(){
-
-
     
     let navigate = useNavigate()
     const BASE_URL = 'http://localhost:8000'
+
+    const GoToLogin = () => {
+        navigate('/login')
+    }
     const  RegisterUser = async (data) => {
         try {
             const response = await axios.post(`${BASE_URL}/users/`, data)
@@ -45,15 +47,15 @@ export default function Register(){
             confirmpassword: ''
         })
         console.log('Registering user...')
-        navigate('/login')
+        GoToLogin()
     }
     
     return (
-        <div className="register">
-            <div className="register-container">
-                <form className="register-form" onSubmit={handleSubmit}>
+        <div className="register dark:bg-black-900 dark:text-secondary">
+            <div className="register-container dark:bg-secondary dark:text-secondary">
+                <form className="register-form dark:bg-primary dark:text-secondary" onSubmit={handleSubmit}>
                 <div className="input-wrapper">
-                    <label htmlFor='username'>Username</label>
+                    <label className="dark:bg-black dark:text-gray-50" htmlFor='username'>Username</label>
                     <input className="reg-input-field" onChange={handleChange}
                     name="username"
                     type="text"
