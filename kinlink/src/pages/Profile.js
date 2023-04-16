@@ -32,16 +32,16 @@ export default function HomePage(props) {
          
     
                  
-                <span className="text-6xl">Kin</span>
+                <span className="text-6xl text-center">Kin</span>
                 <section className="grid grid-cols-2">
                 { (kin)?
                 <div>
                   {
                    kin.map((p)=>{
                     return(
-                    <div>
+                    <div className="flex flex-wrap flex-col">
                       <img className="h-20 rounded-full" src={kinImage(p)}/>
-                      <span>{p.relationship_type}</span>
+                      <span className="self-center">{p.relationship_type}</span>
                     </div>
                     )
                    })

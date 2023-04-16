@@ -46,13 +46,13 @@ export const AuthProvider = ({ children }) => {
         }
         getProfile()
     },[user])
-
+    
     useEffect(()=>{
         const getKin = async () => {
             try {
                 const res = await axios.get(`${BASE_URL}/relationships/to_user=${user.user_id}`)
                 console.log(res)
-                setKin(res.data)
+                setKin(Array.from(res.data))
             } catch (error) {
                 console.log(error)
             }
@@ -64,8 +64,11 @@ export const AuthProvider = ({ children }) => {
         setUser(null)
         setAuthTokens(null)
         setIsAuthenticated(false)
+        setProfile(null)
         console.log('Logged out')
-        navigate('/login')        
+        navigate('/')
+        window.location.reload()
+
     }
 
     const ToLogin = () => {
@@ -80,6 +83,13 @@ export const AuthProvider = ({ children }) => {
         navigate('/')
     }
 
+    const ToUpdatePage = () => {
+        navigate('/updateprofile')
+    }
+    const ToCreateProfile = () => {
+        navigate('/newprofile')
+    }
+
     const contextData = {
         user:user, 
         profile:profile, 
@@ -90,7 +100,9 @@ export const AuthProvider = ({ children }) => {
         logout:logout,
         ToLogin:ToLogin,
         ToHome:ToHome,
-        ToRegister:ToRegister
+        ToRegister:ToRegister,
+        ToUpdatePage:ToUpdatePage,
+        ToCreateProfile:ToCreateProfile
     }
 
     return (

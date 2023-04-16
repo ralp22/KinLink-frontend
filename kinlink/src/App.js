@@ -8,6 +8,8 @@ import { AuthProvider } from './contexts/AuthContext'
 import Nav from './components/Nav'
 import Register from './pages/Register';
 import logo from './assets/kinlinklogo.png'
+import UpdateProfile from './pages/UpdateProfile';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -15,7 +17,7 @@ function App() {
   const [users, setUsers] = useState('')
   const [posts, setPosts] = useState([])
   const [comments, setComments] = useState([])
-  const [profile, setProfile] = useState([])
+  const [profiles, setProfiles] = useState([])
   const [relationships, setRelationships] = useState([])
   const [highlights, setHighlights] = useState([])
 
@@ -31,13 +33,13 @@ function App() {
   
 
   useEffect(()=>{
-      const getProfile = async () => {
+      const getProfiles = async () => {
           const res = await axios.get(`${BASE_URL}/userprofiles/`)
           console.log(res)
-          setProfile(res.data)
-          console.log(profile)
+          setProfiles(res.data)
+          console.log(profiles)
       }
-      getProfile()
+      getProfiles()
   },[])
   
 
@@ -86,14 +88,23 @@ function App() {
   return (
     
       <AuthProvider>
-        <div className="App dark:bg-primary dark:text-gray-50">
-      <img className="max-h-screen-sm max-w-screen-sm self-center ml-16" src={logo}/>
+        <div className="App min-h-screen dark:bg-purple-900 dark:text-gray-50">
+      <img className=" h-80 self-center ml-8" src={logo} alt="logo"/>
         <Nav/>
         <Routes>
           <React.Fragment>
-            <Route path="/" element={<HomePage/>}/>
+            <Route path="/" element={<HomePage 
+            profiles={profiles}
+            posts={posts}
+            comments={comments}/>}/>
             <Route path="/login" element={<LogInPage/>}/>
             <Route path="/register" element={<Register/>}/>
+            <Route path="/updateprofile" element={<UpdateProfile/>}/>
+            <Route path="/profile" element={<Profile 
+            highlights={highlights}
+            profiles={profiles}
+            posts={posts}
+            comments={comments}/>}/>
           </React.Fragment>
         </Routes>
         </div>
