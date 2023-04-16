@@ -12,7 +12,7 @@ export default function LogInPage() {
     try {
       await loginUser(username, password);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -4,16 +4,28 @@ import axios from 'axios'
 import LogInPage from "./LogInPage";
 
 export default function UpdateProfile () {
-    const {user, ToHome, ToCreateProfile} = useContext(AuthContext)
+    const {user, ToHome} = useContext(AuthContext)
     console.log(user.user_id)
     const BASE_URL = 'http://localhost:8000'
-    const  UpdateUserProfile = async (data) => {
+
+    const DestroyUser = async () => {
+      try {
+        const response = await axios.delete(`${BASE_URL}/users/${user.user_id}`)
+        console.log(response)
+        ToHome()
+        return response
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    const UpdateUserProfile = async (data) => {
         try {
             const response = await axios.put(`${BASE_URL}/userprofiles/${user.user_id}`, data)
             console.log(response)
             return response
         } catch(error) {
-            throw error 
+          console.error(error)
         }
     }
     const [profileChange, setProfileChange] = useState({
@@ -66,11 +78,11 @@ export default function UpdateProfile () {
             highlight_reel_img_9: '',
             highlight_reel_img_10: '',
         })
-        (ToHome())
+        ToHome()
         console.log('Updating user profile...')
     }
 
-    return AuthContext? (
+    return user? (
       <div className="min-h-full flex flex-wrap self-center">
         <div className="border-8 dark:border-gray-900 border-green-950 dark:bg-primary m-12 rounded-lg bg-gray-200">
           <form className="flex flex-col self-center m-2 rounded-lg darkregister-bg dark:register-bg" 
@@ -212,13 +224,16 @@ export default function UpdateProfile () {
               {" "}
               <span className="p-10 py-2">Submit Changes{" "}</span>
             </button>
+
+            <button onClick={DestroyUser} className="my-6 shadow-md hover:bg-black hover:text-red-800 shadow-purple-950 hover:shadow-green-950 flex self-center rounded-lg bg-red-900 border-lg text-black font-bold" type="submit">
+              {" "}
+              <span className="p-10 py-2">Delete Account{" "}</span>
+            </button>
           </form>
         </div>
       </div>
     ) : <div className="min-h-full flex flex-wrap flex-col">
       <h1 className="self-center text-2xl font-bold m-4">Please log in first...</h1>
       <LogInPage/>
-      <h6 className="self-center text-xl font-bold m-4">If you have already registered, perhaps you don't have a profile set up yet?</h6>
-     <button onClick={ToCreateProfile}>Create Your Profile</button>
       </div>
 }

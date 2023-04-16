@@ -8,13 +8,14 @@ export default function Register() {
   const GoToLogin = () => {
     navigate("/login");
   };
+
   const RegisterUser = async (data) => {
     try {
       const response = await axios.post(`${BASE_URL}/users/`, data);
       console.log(response);
       return response;
     } catch (error) {
-      throw error;
+      console.error(error)
     }
   };
   const [formValues, setFormValues] = useState({

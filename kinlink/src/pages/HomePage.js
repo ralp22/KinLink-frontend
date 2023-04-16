@@ -1,58 +1,62 @@
 import AuthContext from "../contexts/AuthContext";
 import { React, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import LogInPage from "./LogInPage";
 
 
 export default function HomePage(props) {
+
+  console.log(props)
+
   let { user, profile, kin, isAuthenticated } = useContext(AuthContext);
 
-  console.log(profile);
-  console.log(kin);
-  console.log(props.profiles);
+  let navigate = useNavigate()
 
-  const kinImage = (p) =>{
-    const avy = props.profiles.find(img => img.id === p.from_user)
+  const viewProfile = (id) => {
+    navigate(`/profile/${id}`)
+  }
+  const image = (p) =>{
+    const avy = props.profiles.find(img => img.id === p)
     if(avy){
       return avy.avatar
     } else {
       return null
     }
   }
+  const getname = (p) =>{
+    const name = props.users.find(person=> person.id === p)
+    if(name){
+      return name.username
+    } else {
+      return null
+    }
+  }
+
+
 
   return (
-    <div className="flex flex-wrap justify-center object-center dark:text-white">
-      {!user || !isAuthenticated ? (
-
-        <LogInPage/>
-
-      ) : (
-        <div className="flex flex-wrap flex-col origin-center">
-          <img className="rounded-full self-center" style={{maxHeight: '200px', maxWidth: '200px'}} src={profile.avatar} alt="avatar" />
-          <h1 className=" text-center text-xl m-8 font-extrabold ">Welcome back, {user.username}!</h1>
-         
-    
-                 
-                <span className="text-6xl">Kin</span>
-                <section className="grid grid-cols-2">
-                { (kin)?
-                <div>
-                  {
-                   kin.map((p)=>{
-                    return(
-                    <div>
-                      <img className="h-20 rounded-full" src={kinImage(p)}/>
-                      <span>{p.relationship_type}</span>
-                    </div>
-                    )
-                   })
-                  }
-                </div>:null
+    <div className="flex flex-wrap flex-col">
+      {
+          props.posts.map((post)=>{
+            return (
+              <div className=" border-black self-center">
+                <img className=" h-32 " src={post.image}/>
+                {post.content}
+                {
+                  <div className="self-center">
+                    {post.comments.map(comment=>{
+                      return (
+                        <p>
+                          {comment.content}
+                        </p>
+                      )} 
+                    )}
+                  </div>
                 }
-                </section>
-            
-        </div>
-
-      )}
+              </div>
+            )
+          })
+      }
     </div>
-  );
+  )
 }
