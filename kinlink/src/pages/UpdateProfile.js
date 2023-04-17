@@ -4,7 +4,7 @@ import axios from 'axios'
 import LogInPage from "./LogInPage";
 
 export default function UpdateProfile () {
-    const {user, ToHome} = useContext(AuthContext)
+    const {user, ToHome, logout} = useContext(AuthContext)
     console.log(user.user_id)
     const BASE_URL = 'http://localhost:8000'
 
@@ -12,7 +12,7 @@ export default function UpdateProfile () {
       try {
         const response = await axios.delete(`${BASE_URL}/users/${user.user_id}`)
         console.log(response)
-        ToHome()
+        logout()
         return response
       } catch (error) {
         console.error(error)

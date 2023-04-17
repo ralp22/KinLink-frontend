@@ -43,7 +43,7 @@ export default function NewPost () {
 
     return (
         <div className="h-max flex flex-wrap flex-col rounded-3xl self-center dark:bg-gray-90">
-            <div className="border-8 dark:border-gray-900 border-green-950 dark:bg-primary m-12 rounded-lg bg-gray-200">
+            <div className="border-8 dark:border-gray-900 border-green-950 dark:bg-primary m-12 rounded-lg bg-gray-200 shadow-xl dark:shadow-purple-950 shadow-green-950">
             <form className="flex flex-col self-center m-2 rounded-lg darkregister-bg dark:register-bg" onSubmit={handleSubmit}>
                 <div className="p-3 bg-gray">
                 <label className="text-lg font-bold px-20">

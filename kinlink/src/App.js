@@ -12,6 +12,7 @@ import UpdateProfile from "./pages/UpdateProfile";
 import Profile from "./pages/Profile";
 import ViewProfile from "./pages/ViewProfile";
 import NewPost from "./pages/NewPost";
+import NewLink from "./pages/NewLink";
 
 function App() {
   const BASE_URL = "http://localhost:8000";
@@ -102,6 +103,7 @@ function App() {
             <Route path="/login" element={<LogInPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/updateprofile" element={<UpdateProfile />} />
+            <Route path="/newlink" element={<NewLink/>}/>
             <Route
               path="/profile/:id"
               element={

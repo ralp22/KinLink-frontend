@@ -8,6 +8,15 @@ export default function Profile(props) {
   let navigate = useNavigate();
   const [userPosts, setUserPosts] = useState([]);
 
+  const image = (p) => {
+    const avy = props.profiles.find((prof) => prof.id === p);
+    if (avy) {
+      return avy.avatar;
+    } else {
+      return null;
+    }
+  };
+
   const kinImage = (p) => {
     const avy = props.profiles.find((img) => img.id === p.from_user);
     if (avy) {
@@ -99,13 +108,15 @@ export default function Profile(props) {
                                   key={comment.id}
                                   className="border-2 rounded-lg"
                                 >
-                                  <p className="text-xl dark:register-bg darkpost-bg max-h-fit p-4">
-                                    {comment.content}
+                                  
+                                  <p className="flex flex-row text-xl dark:register-bg darkpost-bg max-h-fit p-4">
+                                  <img className="h-20 border-4 border-green-600 dark:border-primary rounded-lg" src={image(comment.user)}/>
+                                  <span className="mx-4 self-center">{comment.content}</span>
                                   </p>
                                   <form onSubmit={null}>
-                                    <input className="bg-primary text-secondary dark:text-white text-xl rounded-md h-40 w-2/3 pl-0 darkpost-bg dark:register-bg  overflow-scroll font-bold" />
+                                    <input className="bg-primary text-black dark:text-white text-xl rounded-md h-40 w-7/12 pl-0 darkpost-bg dark:register-bg  overflow-scroll font-bold" />
                                     <button
-                                      className=" text-4xl bg-lime-500 text-white h-16 w-1/4 rounded-xl font-bold shadow-lg shadow-gray-400 mx-12"
+                                      className=" text-4xl bg-lime-500 text-white h-20 rounded-xl font-bold shadow-lg shadow-gray-400 mt-10 mx-12 w-1/4"
                                       type="submit"
                                     >
                                       Comment
