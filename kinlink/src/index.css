@@ -13,6 +13,22 @@
         @apply bg-gradient-to-br from-purple-700 via-purple-400 to-gray-700
     }
     .darkregister-bg{
-        @apply bg-gradient-to-br from-lime-400 via-green-400 to-green-950 to-black
+        @apply bg-gradient-to-br from-lime-400 via-green-400 to-green-950
+    }
+    .post-bg{
+        @apply bg-gradient-to-br from-purple-700 
+        via-secondary to-purple-800 
+    }
+    .darkpost-bg{
+        @apply bg-gradient-to-br from-lime-400 via-secondary to-lime-400
+    }
+    .button {
+        @apply bg-gradient-to-b from-gray-300 via-slate-500 to-gray-700 h-16 w-1/4 rounded-xl font-bold text-secondary shadow-sm shadow-gray-900 mx-12
+    }
+    .green-gradient {
+        @apply bg-gradient-to-b from-green-950 from-5% to-green-700 font-bold
+    }
+    .comment {
+        @apply bg-gradient-to-b from-gray-500 from-5% to-gray-100 font-bold
     }
 }

@@ -83,7 +83,7 @@ export default function UpdateProfile () {
     }
 
     return user? (
-      <div className="min-h-full flex flex-wrap self-center">
+      <div className="flex flex-wrap self-center">
         <div className="border-8 dark:border-gray-900 border-green-950 dark:bg-primary m-12 rounded-lg bg-gray-200">
           <form className="flex flex-col self-center m-2 rounded-lg darkregister-bg dark:register-bg" 
 

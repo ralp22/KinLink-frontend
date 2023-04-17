@@ -14,8 +14,6 @@ export default function ViewProfile(props) {
 
   let { id } = useParams();
 
-  //axios calls
-
   useEffect(() => {
     axios
       .get(`${BASE_URL}/users/${id}`)
@@ -40,8 +38,6 @@ export default function ViewProfile(props) {
     console.log(kin);
   }, [id]);
 
-  //functions using props
-
   const kinImage = (p) => {
     const avy = props.profiles.find((img) => img.id === p.from_user);
     console.log(avy);
@@ -63,88 +59,93 @@ export default function ViewProfile(props) {
   }, [user.id]);
 
   return kin && user && profile ? (
-    <div className="flex flex-wrap flex-col origin-center">
+    <div className=" flex flex-wrap justify-center flex-col">
       <img
-        className="rounded-full self-center"
+        className="border-2 border-black dark:border-secondary rounded-full self-center"
         style={{ maxHeight: "200px", maxWidth: "200px" }}
         src={profile.avatar}
         alt="avatar"
       />
-      <h1 className=" text-center text-xl m-8 font-extrabold ">
+      <h1 className=" text-center text-4xl m-8 font-extrabold ">
         {user.username}
       </h1>
 
-
-      <div className="grid grid-cols-2 grid-rows-2">
-
-      <span className=" text-6xl ">Kin</span>
-      <section className="flex flex-wrap ml-96">
-        {kin ? (
-          <div className="grid grid-cols-2">
-            {kin.map((p) => {
-              return (
-                <div key={p.id}>
-                  <img
-                    onClick={() => {
-                      navigate(`/profile/${p.from_user}`);
-                    }}
-                    className="h-20 rounded-full"
-                    src={kinImage(p)}
-                  />
-                  <span className="self-center">{p.relationship_type}</span>
-                </div>
-              );
-            })}
-          </div>
-        ) : null}
-      </section>
-
-      <div >
-        <span className="text-6xl">Posts</span>
-        {
-          <div className="flex flex-wrap float-right">
-            {userPosts.map((p) => {
-              return(
-              <div>
-                <img className="h-28" src={p.image} />
-                <div>
-                  {p.content}
-                    <div className="self-center">
-                      {p.comments.map((comment) => {
-                        return <p key={comment.id}>{comment.content}</p>;
-                      })}
-                    </div>
-                </div>
-              </div>
-              );
-            })}
-          </div>
-        }
-      </div>
-
-
+      <section className="flex flex-wrap flex-col px-3 py-10">
+        <div className="self-center w-3/4">
+          <span className="text-6xl font-bold">Kin</span>
+          {kin ? (
+            <div className="grid grid-cols-5">
+              {kin.map((p) => {
+                return (
+                  <div key={p.id}>
+                    <img
+                      onClick={() => {
+                        navigate(`/profile/${p.from_user}`);
+                      }}
+                      className="border-2 border-primary dark:border-secondary h-20 rounded-full"
+                      src={kinImage(p)}
+                    />
+                    <span className="self-center">{p.relationship_type}</span>
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
 
+        <div className="self-center w-3/4">
+          <span className="text-6xl font-bold">Posts</span>
+          {
+            <div className="">
+              {userPosts.map((p) => {
+                return (
+                  <div className="dark:darkpost-bg post-bg border-2 rounded-lg">
+                    <img
+                      className="mx-auto h-72 w-fit border-1 rounded-3xl p-2"
+                      src={p.image}
+                    />
+                    <div className="border-4 rounded-lg">
+                      <p className="text-2xl darkpost-bg dark:register-bg scroll-my-1 border-1 border-black rounded-lg p-4">
+                        {p.content}
+                      </p>
+                      <div className="self-center border-1 border-black rounded-lg">
+                        {p.comments.map((comment) => {
+                          return (
+                            <div
+                              key={comment.id}
+                              className="border-2 rounded-lg"
+                            >
+                              <p className="text-xl dark:register-bg darkpost-bg max-h-fit p-4">
+                                {comment.content}
+                              </p>
 
+                              <form className="" onSubmit={null}>
+                                <input className="bg-primary text-secondary dark:text-white text-xl rounded-md h-40 w-2/3 pl-0 darkpost-bg dark:register-bg  overflow-scroll font-bold" />
+
+                                <button
+                                  className="text-4xl bg-lime-500 text-white h-20 rounded-xl font-bold shadow-lg shadow-gray-400 mt-10 mx-12 w-1/4"
+                                  type="submit"
+                                >
+                                  Comment
+                                </button>
+                              </form>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          }
+        </div>
+      </section>
     </div>
   ) : (
     <h1 className="font-bold h-80 text-center self-center">Whaaaaaatttt</h1>
   );
 }
-
-// START WORKING HERE to get each profile page rendering correctly
-// MAKE DELETE BUTTONS TO ENSURE FULL CRUD
-// THEN WORK ON GETTING POSTS TO RENDER WITH ALL IMAGES/NAMES
-// FINALLY WORK ON CREATING NEW POSTS / NEW COMMENTS
-
-// const kinId = (p) =>{
-//     const avy = props.profiles.find(img => img.id === p.from_user)
-//     if(avy){
-//       return avy.avatar
-//     } else {
-//       return null
-//     }
-//   }
 
 // conditionally render button to establish relationship if
 //1) user profile has id that does not match the logged in user's id

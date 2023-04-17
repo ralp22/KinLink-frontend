@@ -11,6 +11,7 @@ import logo from "./assets/kinlinklogo.png";
 import UpdateProfile from "./pages/UpdateProfile";
 import Profile from "./pages/Profile";
 import ViewProfile from "./pages/ViewProfile";
+import NewPost from "./pages/NewPost";
 
 function App() {
   const BASE_URL = "http://localhost:8000";
@@ -83,8 +84,8 @@ function App() {
 
   return (
     <AuthProvider>
-      <div className="App min-h-screen dark:bg-purple-900 dark:text-gray-50">
-        <img className=" h-80 self-center ml-8" src={logo} alt="logo" />
+      <div className="App z-2 overflow-y-scroll scroll-smooth bg-gray-100 h-screen dark:bg-purple-900 dark:text-gray-50">
+        <img className="top-0 h-80 self-center ml-8" src={logo} alt="logo" />
         <Nav />
         <Routes>
           <React.Fragment>
@@ -124,6 +125,9 @@ function App() {
                 />
               }
             />
+            <Route 
+              path="/newpost"
+              element={<NewPost/>}/>
           </React.Fragment>
         </Routes>
       </div>
